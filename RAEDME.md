@@ -283,3 +283,199 @@ All elements will have zero margin and padding, and use border-box sizing.
 CSS selectors are essential for targeting HTML elements and applying styles efficiently. Understanding element, class, ID, group, descendant, child, and universal selectors helps developers write cleaner, more maintainable, and reusable CSS code.
 
 ---
+
+# Q3. What is the CSS Box Model? Explain Each Layer
+
+## What is the CSS Box Model?
+
+The **CSS Box Model** is a fundamental concept that treats every HTML element as a rectangular box with four layers. 
+It defines how elements are sized, spaced, and laid out on a web page.
+
+## Layers of the CSS Box Model
+
+The CSS Box Model consists of **four layers**:
+
+1. Content
+2. Padding
+3. Border
+4. Margin
+
+The Four Layers (from innermost to outermost)
+| Layer   | What It Is                                          | Key Properties                         | Description                                                                            |
+| ------- | --------------------------------------------------- | -------------------------------------- | -------------------------------------------------------------------------------------- |
+| Content | The actual content (text, images, media)            | width, height                          | The innermost area containing the real content like text or images  |
+| Padding | Space around the content (inside border)            | padding, padding-top/right/bottom/left | Transparent space that clears an area around the content           |
+| Border  | Line around the padding and content                 | border, border-width, border-style     | A border that goes around the padding and content               |
+| Margin  | Space outside the border (separates from neighbors) | margin, margin-top/right/bottom/left   | Transparent area that separates the element from other elements   |
+
+### Visual Structure
+
+```text
++-------------------------+
+|         Margin          |
+|  +-------------------+  |
+|  |      Border       |  |
+|  |  +-------------+  |  |
+|  |  |   Padding   |  |  |
+|  |  | +---------+ |  |  |
+|  |  | | Content | |  |  |
+|  |  | +---------+ |  |  |
+|  |  +-------------+  |  |
+|  +-------------------+  |
++-------------------------+
+```
+
+---
+
+## Example: Class Reusability vs ID Uniqueness
+
+### 1. Content
+#### CSS
+
+```css
+.box {
+    width: 300px;
+    height: 150px;
+}
+```
+
+#### HTML
+
+```html
+<div class="box">
+    This is the content area.
+</div>
+```
+
+**Explanation:**
+The width and height properties define the size of the content area.
+
+---
+
+### 2. Padding
+
+#### CSS
+
+```css
+.box {
+    padding: 20px;
+}
+```
+
+#### HTML
+
+```html
+<div class="box">
+    Content with padding
+</div>
+```
+
+**Explanation:**
+The content will have 20px of space between itself and the border.
+
+---
+
+### 3. Border
+
+#### CSS
+
+```css
+.box {
+    border: 3px solid black;
+}
+```
+
+#### HTML
+
+```html
+<div class="box">
+    Content with border
+</div>
+```
+
+**Explanation:**
+A black border with a thickness of 3px will surround the element.
+
+---
+
+### 4. Margin
+
+#### CSS
+
+```css
+.box {
+    margin: 30px;
+}
+```
+
+#### HTML
+
+```html
+<div class="box">
+    Content with margin
+</div>
+```
+
+**Explanation:**
+There will be 30px of space outside the element, separating it from nearby elements.
+
+---
+
+## Complete Example of the Box Model
+
+### CSS
+
+```css
+.box {
+  width: 200px;           /* Content width */
+  padding: 20px;          /* Space inside, around content */
+  border: 5px solid black; /* Border around padding */
+  margin: 30px;           /* Space outside, separates from other elements */
+  background-color: lightblue; /* Applies to content + padding + border */
+}
+```
+
+### HTML
+
+```html
+<div class="box">
+    This box demonstrates all layers of the CSS Box Model.
+</div>
+```
+
+## How Total Size is Calculated
+
+By default, the total size of an element is calculated as:
+
+```text
+Total Width =
+Width + Left Padding + Right Padding +
+Left Border + Right Border
+
+Total Height =
+Height + Top Padding + Bottom Padding +
+Top Border + Bottom Border
+```
+
+### Example
+
+```css
+.box {
+    width: 200px;
+    padding: 20px;
+    border: 5px solid black;
+}
+```
+
+**Total Width =**
+
+```text
+200 + 20 + 20 + 5 + 5 = 250px
+```
+
+---
+
+
+## Conclusion
+
+The CSS Box Model is the foundation of web page layout. Every HTML element consists of **content, padding, border, and margin**. Understanding these layers helps developers control spacing, sizing, and positioning of elements effectively.
