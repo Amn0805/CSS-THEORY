@@ -479,3 +479,270 @@ Top Border + Bottom Border
 ## Conclusion
 
 The CSS Box Model is the foundation of web page layout. Every HTML element consists of **content, padding, border, and margin**. Understanding these layers helps developers control spacing, sizing, and positioning of elements effectively.
+
+---
+
+# Q4. Explain CSS Colors. What Are the Different Ways to Define a Color?
+
+## What are CSS Colors?
+
+CSS colors are used to change the appearance of elements on a web page. They can be applied to text, backgrounds, borders, shadows, and many other properties.
+
+---
+
+## Why Are CSS Colors Important?
+
+CSS colors help developers:
+
+* Make websites visually attractive
+* Highlight important content
+* Improve readability
+* Create consistent branding
+* Enhance user experience
+
+---
+
+Main Ways to Define Colors in CSS
+| Method       | Syntax Example                  | How It Works                                                                                      |
+| ------------ | ------------------------------- | -------------------------------------------------------------------------------------------------                                           |
+| Named colors | color: red;                       | Uses 147 predefined keywords like red, blue, green,                                    |
+| Hexadecimal  | color: #ff4444; or #f44;        | Hex values #RRGGBB (or 3-digit shorthand #RGB), where each pair is 00–FF for red/green/|
+| RGB          | color: rgb(255, 68, 68);        | Integer values 0–255 for red, green, blue intensities                                  |
+| RGBA         | color: rgba(255, 68, 68, 0.6);  | RGB plus alpha (0–1 or 0%–100%) for transparency                                       |
+| HSL          | color: hsl(0, 100%, 63%);       | Hue (0–360°), Saturation (%), Lightness (%) — more intuitive for adjusting colors      |
+| HSLA         | color: hsla(0, 100%, 63%, 0.6); | HSL plus alpha channel for transparency                                                |
+
+## Examples: 
+
+### 1. Color Names
+
+#### CSS
+
+```css
+h1 {
+    color: blue;
+}
+
+p {
+    color: red;
+}
+```
+
+#### HTML
+
+```html
+<h1>Welcome</h1>
+<p>This is a paragraph.</p>
+```
+
+**Result:**
+The heading appears blue and the paragraph appears red.
+
+---
+
+### 2. HEX Colors
+
+#### CSS
+
+```css
+h1 {
+    color: #0000FF;
+}
+
+p {
+    color: #FF0000;
+}
+```
+
+#### HTML
+
+```html
+<h1>Welcome</h1>
+<p>This is a paragraph.</p>
+```
+
+**Explanation:**
+
+* `#0000FF` = Blue
+* `#FF0000` = Red
+
+---
+
+### 3. RGB Colors
+
+#### CSS
+
+```css
+h1 {
+    color: rgb(0, 0, 255);
+}
+
+p {
+    color: rgb(255, 0, 0);
+}
+```
+
+#### HTML
+
+```html
+<h1>Welcome</h1>
+<p>This is a paragraph.</p>
+```
+
+**Explanation:**
+
+* `rgb(255, 0, 0)` = Red
+* `rgb(0, 255, 0)` = Green
+* `rgb(0, 0, 255)` = Blue
+
+---
+
+### 4. RGBA Colors
+
+#### CSS
+
+```css
+.box {
+    background-color: rgba(0, 0, 255, 0.5);
+}
+```
+
+#### HTML
+
+```html
+<div class="box">
+    Semi-transparent blue background
+</div>
+```
+
+**Result:**
+The background appears blue with 50% transparency.
+
+---
+
+### 5. HSL Colors
+
+#### CSS
+
+```css
+h1 {
+    color: hsl(240, 100%, 50%);
+}
+```
+
+#### HTML
+
+```html
+<h1>Welcome</h1>
+```
+
+**Explanation:**
+
+* Hue = 240 (Blue)
+* Saturation = 100%
+* Lightness = 50%
+
+---
+
+### 6. HSLA Colors
+
+#### CSS
+
+```css
+.box {
+    background-color: hsla(240, 100%, 50%, 0.5);
+}
+```
+
+#### HTML
+
+```html
+<div class="box">
+    Transparent Blue Box
+</div>
+```
+
+**Result:**
+The box has a semi-transparent blue background.
+
+---
+
+## Applying Colors to Different Properties
+
+### Text Color
+
+```css
+p {
+    color: green;
+}
+```
+
+### Background Color
+
+```css
+div {
+    background-color: lightblue;
+}
+```
+
+### Border Color
+
+```css
+button {
+    border: 2px solid red;
+}
+```
+
+---
+
+## Complete Example
+
+### CSS
+
+```css
+body {
+    background-color: #f4f4f4;
+}
+
+h1 {
+    color: blue;
+}
+
+p {
+    color: rgb(255, 0, 0);
+}
+
+.box {
+    background-color: rgba(0, 128, 255, 0.5);
+    border: 2px solid black;
+    padding: 20px;
+}
+```
+
+### HTML
+
+```html
+<!DOCTYPE html>
+<html>
+<head>
+    <title>CSS Colors Example</title>
+</head>
+<body>
+
+    <h1>CSS Colors</h1>
+
+    <p>This paragraph uses RGB color.</p>
+
+    <div class="box">
+        This box uses RGBA color.
+    </div>
+
+</body>
+</html>
+```
+
+---
+
+## Conclusion
+
+CSS colors allow developers to style text, backgrounds, borders, and other elements. Colors can be defined using color names, HEX values, RGB, RGBA, HSL, and HSLA formats. Choosing the right color format helps create attractive, readable, and professional web designs.
