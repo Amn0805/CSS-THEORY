@@ -327,7 +327,7 @@ The Four Layers (from innermost to outermost)
 
 ---
 
-## Example: Class Reusability vs ID Uniqueness
+## Examples: 
 
 ### 1. Content
 #### CSS
