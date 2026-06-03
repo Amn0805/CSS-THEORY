@@ -19,7 +19,20 @@ CSS solves the problem of separating **content (HTML)** from **design (styling)*
 
 ---
 
-## Three Ways to Add CSS to an HTML Document
+## Three Ways to Add CSS to an HTML Document 
+
+## Ways to Add CSS to HTML
+
+```text
+                           Ways
+                             │
+      ┌──────────────────────┼──────────────────────┐
+      │                      │                      │
+      ▼                      ▼                      ▼
+ External CSS         Internal CSS           Inline CSS
+      │                      │                      │
+ styles.css           <style> tag             style=""
+```
 
 | Method           | Description                                                                 | Example                                     |
 | ---------------- | --------------------------------------------------------------------------- | ------------------------------------------- |
@@ -119,7 +132,21 @@ CSS selectors are used to target HTML elements and apply styles to them. They he
 
 ---
 
-## The 7 Selector Types with Examples
+
+## The 7 Selector Types with Examples 
+```text
+                        CSS Selectors
+                               │
+        ┌──────────────────────┴──────────────────────┐
+        │                                             │
+ Basic Selectors                          Relationship Selectors
+        │                                             │
+ ┌──────┼──────┬──────┬──────┐              ┌─────────┴─────────┐
+ │      │      │      │      │              │                   │
+ ▼      ▼      ▼      ▼      ▼              ▼                   ▼
+Element Class   ID   Group Universal   Descendant          Child
+  p    .intro #header h1,h2,p    *       div p           div > p
+  ```
 
 | Selector Type           | Syntax       | Description                                   | Example                         |
 | ----------------------- | ------------ | --------------------------------------------- | ------------------------------- |
@@ -364,22 +391,7 @@ It defines how elements are sized, spaced, and laid out on a web page.
 
 ## Layers of the CSS Box Model
 
-The CSS Box Model consists of **four layers**:
-
-1. Content
-2. Padding
-3. Border
-4. Margin
-
-The Four Layers (from innermost to outermost)
-| Layer   | What It Is                                          | Key Properties                         | Description                                                                            |
-| ------- | --------------------------------------------------- | -------------------------------------- | -------------------------------------------------------------------------------------- |
-| Content | The actual content (text, images, media)            | width, height                          | The innermost area containing the real content like text or images  |
-| Padding | Space around the content (inside border)            | padding, padding-top/right/bottom/left | Transparent space that clears an area around the content           |
-| Border  | Line around the padding and content                 | border, border-width, border-style     | A border that goes around the padding and content               |
-| Margin  | Space outside the border (separates from neighbors) | margin, margin-top/right/bottom/left   | Transparent area that separates the element from other elements   |
-
-### Visual Structure
+The CSS Box Model consists of **four layers**
 
 ```text
 +-------------------------+
@@ -397,6 +409,21 @@ The Four Layers (from innermost to outermost)
 ```
 
 ---
+
+1. Content
+2. Padding
+3. Border
+4. Margin
+
+## The Four Layers of CSS Box Model (From Innermost to Outermost)
+
+| Layer   | What It Is | Key Properties | Description |
+|----------|------------|----------------|-------------|
+| **Content** | The actual content (text, images, media) | `width`, `height` | The innermost area that contains real content like text, images, or videos. |
+| **Padding** | Space around the content (inside border) | `padding`, `padding-top/right/bottom/left` | Transparent space that creates distance between content and border. |
+| **Border** | Line around the padding and content | `border`, `border-width`, `border-style` | A visible line that wraps around padding and content. |
+| **Margin** | Space outside the border (separates elements) | `margin`, `margin-top/right/bottom/left` | Transparent space that separates one element from another. |
+
 
 ## Examples: 
 
@@ -573,6 +600,17 @@ CSS colors help developers:
 
 ---
 ## Main Ways to Define Colors in CSS
+
+## CSS Colors Overview
+
+```text
+                          CSS Colors
+                                │
+        ┌───────────────┬────────┬────────┬───────────────┐
+        │               │        │        │               │
+        ▼               ▼        ▼        ▼               ▼
+   Named Colors     HEX Colors   RGB     RGBA           HSL/HSLA
+```
 
 | Method | Syntax Example | How It Works |
 |---------|---------------|-------------|
@@ -951,6 +989,7 @@ The parent font size is 20px.
 ```
 
 The child text will be 40px.
+
 ---
 
 ### 4. rem
@@ -980,6 +1019,7 @@ h1 {
 ```
 
 The heading size becomes 32px.
+
 ---
 
 ### 5. vh (Viewport Height)
@@ -1002,6 +1042,7 @@ The heading size becomes 32px.
 
 **Explanation:**
 The element will occupy 100% of the browser's visible height.
+
 ---
 
 ### 6. vw (Viewport Width)
@@ -1024,6 +1065,7 @@ The element will occupy 100% of the browser's visible height.
 
 **Explanation:**
 The banner will occupy 100% of the browser's width.
+
 ---
 
 # Complete Example
