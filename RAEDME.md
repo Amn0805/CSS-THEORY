@@ -1972,3 +1972,807 @@ Result: Items sit side by side in a row.
 | Dimension | Two-dimensional (natural flow) | One-dimensional (row or column) |
 | Best for | Text content, paragraphs | Components, navigation, cards, responsive layouts |
 | Alignment | Limited | Full control via main & cross axis |
+
+# Q8 What are CSS Pseudo-classes and Pseudo-elements?
+
+Pseudo-classes and pseudo-elements are **special selectors** in CSS that let you style elements based on their state or style specific parts of an element.
+```
+                    CSS Special Selectors
+                              │
+              ┌───────────────┴───────────────┐
+              │                               │
+        Pseudo-classes                 Pseudo-elements
+              │                               │
+     :hover :focus :active      ::before ::after ::first-letter
+              │                               │
+      Element State                 Part of Element
+ ```
+
+---
+
+# What is a Pseudo-class?
+
+A pseudo-class is a keyword that selects an element based on its special state or user interaction.
+
+## Key Points
+
+| Aspect | Explanation |
+|----------|------------|
+| Syntax | Single colon `:` (e.g., `selector:pseudo-class`) |
+| What it targets | Element's state (hover, focus, visited, etc.) |
+| Based on | User interaction or position in the document tree |
+
+---
+
+## Common Pseudo-classes
+
+| Pseudo-class | What it does | Example |
+|-------------|-------------|---------|
+| `:hover` | When mouse is over an element | `a:hover { color: red; }` |
+| `:focus` | When element has focus (typing in input) | `input:focus { border: 2px solid blue; }` |
+| `:active` | When element is being clicked/activated | `button:active { transform: scale(0.95); }` |
+| `:link` | Unvisited links | `a:link { color: blue; }` |
+| `:visited` | Visited links | `a:visited { color: purple; }` |
+| `:first-child` | First child of parent | `li:first-child { font-weight: bold; }` |
+| `:last-child` | Last child of parent | `li:last-child { color: red; }` |
+| `:nth-child(n)` | The nth child of parent | `li:nth-child(2) { background: yellow; }` |
+
+---
+
+## Example
+
+### HTML
+
+```html
+<div>
+    <p>This is the first paragraph (styled by :first-child).</p>
+    <p>This is the second paragraph.</p>
+</div>
+
+<button>Hover Over Me</button>
+
+<input type="text" placeholder="Click here to focus">
+```
+
+### CSS
+
+```css
+/* Change color when hovering */
+button:hover {
+    background-color: blue;
+    color: white;
+}
+
+/* Style first paragraph differently */
+p:first-child {
+    font-size: 1.2em;
+}
+
+/* Style input when focused */
+input:focus {
+    outline: 2px solid orange;
+}
+```
+
+---
+
+# What is a Pseudo-element?
+
+A pseudo-element is a keyword that styles a specific part of an element.
+
+---
+
+## Key Points
+
+| Aspect | Explanation |
+|----------|------------|
+| Syntax | Double colon `::` (e.g., `selector::pseudo-element`) |
+| What it targets | Specific part of element (first letter, before, after, etc.) |
+| Purpose | Insert content or style parts without adding extra HTML |
+
+---
+
+## Common Pseudo-elements
+
+| Pseudo-element | What it does | Example |
+|---------------|-------------|---------|
+| `::before` | Inserts content before element | `p::before { content: "→ "; }` |
+| `::after` | Inserts content after element | `p::after { content: " ←"; }` |
+| `::first-letter` | Styles first letter of text | `p::first-letter { font-size: 2em; }` |
+| `::first-line` | Styles first line of text | `p::first-line { font-weight: bold; }` |
+| `::selection` | Styles user-selected text | `p::selection { background: yellow; }` |
+| `::marker` | Styles list item markers | `li::marker { color: red; }` |
+
+---
+
+## Example
+
+### HTML
+
+```html
+<h1>Welcome to CSS</h1>
+
+<p>
+    This is a paragraph demonstrating pseudo-elements.
+</p>
+
+<blockquote>
+    Learning CSS is fun
+</blockquote>
+```
+
+### CSS
+
+```css
+/* Add icon before headings */
+h1::before {
+    content: "📌 ";
+}
+
+/* Add quote after blockquote */
+blockquote::after {
+    content: " — Author";
+}
+
+/* Style first letter like a drop cap */
+p::first-letter {
+    font-size: 3em;
+    color: blue;
+}
+
+/* Change selected text color */
+p::selection {
+    background: yellow;
+    color: black;
+}
+```
+
+---
+
+# Key Differences
+
+| Feature | Pseudo-class | Pseudo-element |
+|-----------|------------|---------------|
+| What it does | Styles element based on state | Styles a specific part of an element |
+| Syntax | Single colon `:` | Double colon `::` |
+| Examples | `:hover`, `:focus`, `:first-child` | `::before`, `::after`, `::first-letter` |
+| Based on | User interaction or document position | Element's content/structure parts |
+| Can use with multiple selectors | Yes, with conditions | Mostly used alone |
+
+---
+
+# Conclusion
+
+| Type | Symbol | Purpose | Example |
+|--------|--------|---------|---------|
+| Pseudo-class | `:` | Style based on state | `button:hover` |
+| Pseudo-element | `::` | Style part of element | `p::first-letter` |
+
+Pseudo-classes and pseudo-elements give you powerful control over styling without needing extra HTML elements.
+
+# Q9. Explain CSS Transitions and Animations
+
+## What is CSS Transition?
+
+CSS Transition allows you to change property values smoothly over time instead of instantly. It creates a smooth effect when an element changes from one state to another.
+
+---
+## Overview
+```text
+                  CSS Motion Effects
+                           │
+           ┌───────────────┴───────────────┐
+           │                               │
+      Transition                     Animation
+           │                               │
+      A ─────→ B                 A → B → C → D
+           │                               │
+    User Triggered              Automatic / Triggered
+           │                               │
+       2 States                  Multiple Keyframes
+
+```
+---
+
+## Key Points
+
+| Aspect | Explanation |
+|----------|------------|
+| What it does | Smoothly changes property values over a duration |
+| Trigger | Must be triggered by user interaction (hover, focus, click, class change) |
+| States | Only 2 states — start (A) and end (B) |
+| Control | You control the duration and speed curve |
+
+---
+
+## Syntax
+
+```css
+transition: property duration timing-function delay;
+```
+
+---
+
+## Transition Properties
+
+```text
+                              Properties
+                                │
+        ┌───────────────────────┬──────────────────┬─────────────────────────┐
+        │                       │                  │                         │
+        ▼                       ▼                  ▼                         ▼
+transition-property  transition-duration   transition-timing-function   transition-delay
+```
+
+---
+
+| Property | What it does | Example |
+|------------|-------------|----------|
+| transition-property | Which property to animate | width, color, background-color |
+| transition-duration | How long the transition takes | 2s or 2000ms |
+| transition-timing-function | Speed curve (how it accelerates) | ease, linear, ease-in-out |
+| transition-delay | Wait time before starting | 0.5s |
+
+---
+
+## Example: Hover Effect
+
+```css
+div {
+  width: 100px;
+  height: 100px;
+  background-color: red;
+  transition: width 2s;  /* Width changes over 2 seconds */
+}
+
+div:hover {
+  width: 300px;  /* When hovered, width smoothly changes to 300px */
+}
+```
+
+### Result
+
+When you hover over the div, it smoothly grows from 100px to 300px over 2 seconds. When you move the mouse away, it smoothly shrinks back.
+
+---
+
+# What is CSS Animation?
+
+CSS Animation allows you to animate HTML elements with full control over the animation process. Unlike transitions, animations can have multiple keyframes and run automatically without user interaction.
+
+---
+
+## Key Points
+
+| Aspect | Explanation |
+|----------|------------|
+| What it does | Animates elements through multiple states (keyframes) |
+| Trigger | Can run automatically without hover or click |
+| States | Multiple keyframes (A → B → C → D, etc.) |
+| Control | Full control over timing, repetition, direction, delays |
+
+---
+
+## Syntax
+
+```css
+animation: name duration timing-function delay iteration-count direction fill-mode play-state;
+```
+
+---
+
+## Animation Properties
+
+```text
+                              Properties
+                                │
+        ┌───────┬───────┬───────────────┬──────┬───────────────┬──────┬────────────────────┬─────────┐
+        │       │       │               │      │               │      │                    │         │
+        ▼       │       ▼               │      ▼               │      ▼                    │         ▼ 
+   @keyframes   │ animation-duration    │   animation-delay    │   animation-direction     │   animation-play-state
+                ▼                       ▼                      ▼                           ▼
+         animation-name       animation-timing-function    animation-iteration-count   animation-fill-mode
+```
+
+---
+
+| Property | What it does | Example |
+|------------|-------------|----------|
+| @keyframes | Defines animation steps (start/end states) | See example below |
+| animation-name | Name of the keyframes animation | bounce |
+| animation-duration | How long one cycle takes | 2s |
+| animation-timing-function | Speed curve | ease, linear, ease-in-out |
+| animation-delay | Wait before starting | 0.5s |
+| animation-iteration-count | How many times to repeat | 3, infinite |
+| animation-direction | Play direction | normal, reverse, alternate |
+| animation-fill-mode | State after animation ends | forwards, backwards, both |
+| animation-play-state | Pause or run | paused, running |
+
+---
+
+## Example
+
+```css
+/* Define the keyframes */
+@keyframes changeColor {
+  0% { background-color: red; }
+  50% { background-color: blue; }
+  100% { background-color: green; }
+}
+
+/* Apply the animation */
+div {
+  width: 100px;
+  height: 100px;
+  animation: changeColor 3s infinite;  /* Runs forever */
+}
+```
+
+### Result
+
+The div changes color from red → blue → green automatically, repeating forever.
+
+---
+
+# Key Differences: Transitions vs Animations
+
+| Feature | Transition | Animation |
+|----------|------------|-----------|
+| Trigger | Must be triggered (hover, focus, class change) | Can run automatically |
+| States | 2 states only — start (A) and end (B) | Multiple keyframes (A → B → C → D) |
+| Repetition | No looping — runs once per trigger | Can loop infinitely (`animation-iteration-count: infinite`) |
+| Direction | Forward only (A → B) | Can reverse (alternate, reverse) |
+| Control | Limited (start/end states) | Full control over each step |
+| Complexity | Simple, lightweight | More complex, powerful |
+| Use case | Hover effects, simple UI feedback | Complex animations, loading spinners, game effects |
+
+---
+
+## Diagram Explanation
+
+```text
+Transition:  A ────────→ B
+            (only 2 states)
+
+Animation:   A ──→ B ──→ C ──→ D ──→ A (loops)
+            (multiple keyframes)
+```
+
+---
+
+# When to Use Each
+
+## Use Transitions When:
+
+| Scenario | Example |
+|------------|----------|
+| Hover effects | Button color change on hover |
+| Simple state changes | Input border color on focus |
+| UI feedback | Smooth opening/closing of menus |
+| ToolTips | Fade in/out effects |
+| Form interactions | Smooth expansion of form fields |
+
+---
+
+## Use Animations When:
+
+| Scenario | Example |
+|------------|----------|
+| Loading spinners | Rotating loader icon |
+| Complex movement | Ball bouncing across screen |
+| Continuous effects | Infinite pulsing glow |
+| Game effects | Character jumping, particles |
+| Multiple steps | Card flipping, sequence animation |
+| Auto-play | Intro animation that starts automatically |
+
+---
+
+# Complete Examples
+
+## Transition Example (Hover Effect)
+
+```html
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+.button {
+  background-color: blue;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  transition: all 0.3s ease;  /* Smooth transition on all properties */
+}
+
+.button:hover {
+  background-color: red;
+  transform: scale(1.1);  /* Grow 10% */
+}
+</style>
+</head>
+<body>
+
+<button class="button">Hover Me</button>
+
+</body>
+</html>
+```
+
+### Result
+
+Button smoothly changes color and grows when hovered.
+
+---
+
+## Animation Example (Loading Spinner)
+
+```html
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+.loader {
+  width: 50px;
+  height: 50px;
+  border: 5px solid #f3f3f3;
+  border-top: 5px solid blue;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+</style>
+</head>
+<body>
+
+<div class="loader"></div>
+
+</body>
+</html>
+```
+
+### Result
+
+Spinner rotates continuously forever.
+
+---
+
+# Timing Functions (Speed Curve)
+
+Both transitions and animations use timing functions to control acceleration:
+
+| Timing Function | Effect |
+|-----------------|---------|
+| ease (default) | Starts slow, speeds up, ends slow |
+| linear | Same speed throughout |
+| ease-in | Starts slow, speeds up |
+| ease-out | Starts fast, slows down |
+| ease-in-out | Starts slow, speeds up, ends slow |
+
+```css
+div {
+  transition: width 2s ease-in-out;
+}
+```
+
+---
+
+# Conclusion
+
+| Aspect | Transition | Animation |
+|----------|------------|-----------|
+| What it is | Smooth change between 2 states | Full control over multiple animation steps |
+| Trigger | User interaction required | Can run automatically |
+| Keyframes | No keyframes (implicit A→B) | Requires `@keyframes` |
+| Looping | No | Yes (`infinite`) |
+| Complexity | Simple | Complex, powerful |
+
+# Q10 What is Responsive Web Design? Explain Media Queries, CSS Variabl...
+
+## What is Responsive Web Design?
+
+Responsive Web Design (RWD) is an approach to web design that makes web pages look good and work well on all devices — from desktop computers to tablets to mobile phones.
+
+---
+
+### Key Goal:
+Your website should automatically adapt to the screen size, providing an optimal viewing experience regardless of the device.
+
+---
+## Key Principles:
+
+```text
+                      principles 
+                           │
+        ┌──────────────────┼──────────────────┐
+        │                  │                  │
+        ▼                  ▼                  ▼
+ Flexible Layouts   Flexible Images    Media Queries
+ ```
+ ---
+
+| Principle        | What it means                                                      |
+| ---------------- | ------------------------------------------------------------------ |
+| Flexible layouts | Elements resize proportionally using percentages, not fixed pixels |
+| Flexible images  | Images scale to fit their containers                               |
+| Media queries    | Apply different styles based on screen size         |
+
+---
+
+## CSS Media Queries
+
+Media Queries are a way to target specific devices and screen sizes so you can apply different styles based on the device characteristics.
+
+---
+
+## What Media Queries Do:
+
+By using media queries, you can:
+* Display a button on desktop and hide it on mobile
+* Use large font size for headings on desktop, smaller font on mobile
+* Make a flex container wrap on mobile and un-wrap on desktop
+* Change layout based on screen orientation (portrait vs landscape)
+
+---
+
+## Syntax:
+```css
+@media media-type AND (condition) {
+  /* CSS rules for this condition */
+}
+```
+
+---
+
+### Example:
+ 
+```css
+/* Default styles (mobile-first) */
+body {
+  font-size: 14px;
+}
+
+/* Tablets and larger (min-width: 768px) */
+@media screen and (min-width: 768px) {
+  body {
+    font-size: 16px;
+  }
+}
+
+/* Desktop and larger (min-width: 1024px) */
+@media screen and (min-width: 1024px) {
+  body {
+    font-size: 18px;
+  }
+}
+```
+---
+
+## Breakpoints (Common Screen Sizes):
+
+| Breakpoint    | Screen Size       | Device Type      |
+| ------------- | ----------------- | ---------------- |
+| Mobile        | max-width: 767px  | Phones           |
+| Tablet        | min-width: 768px  | Tablets          |
+| Desktop       | min-width: 1024px | Laptops/Desktops |
+| Large Desktop | min-width: 1200px | Large monitors   |
+
+---
+## Common Media Query Types:
+
+```css
+/* Screen width maximum */
+@media screen and (max-width: 768px) {
+  /* Styles for screens 768px or narrower */
+}
+
+/* Screen width minimum */
+@media screen and (min-width: 768px) {
+  /* Styles for screens 768px or wider */
+}
+
+/* Orientation */
+@media screen and (orientation: portrait) {
+  /* Portrait mode styles */
+}
+
+@media screen and (orientation: landscape) {
+  /* Landscape mode styles */
+}
+
+```
+---
+## CSS Variables (Custom Properties)
+
+CSS Variables (also called Custom Properties) are containers that hold values that can be changed and reused throughout your CSS.
+
+---
+## Why Use CSS Variables?
+
+| Benefit         | Explanation                                        |
+| --------------- | -------------------------------------------------- |
+| Reusability     | Define value once, use it everywhere  |
+| Easy updates    | Change one value, updates everywhere  |
+| Theming         | Easy to create dark/light themes      |
+| Maintainability | Cleaner, more organized code          |
+
+---
+## How to Create CSS Variables:
+
+```css
+/* Declare a variable (inside a selector) */
+.container {
+  --padding: 20px;  /* Double hyphen prefix */
+  padding: var(--padding);  /* Use var() function */
+}
+```
+---
+## Syntax:
+Declaration: --variable-name: value;
+Usage: var(--variable-name)
+Using Variables in Different Selectors:
+
+---
+
+```css
+/* Define in :root for global use */
+:root {
+  --primary-color: blue;
+  --font-size: 16px;
+  --spacing: 20px;
+}
+
+/* Use in any element */
+h1 {
+  color: var(--primary-color);
+  font-size: var(--font-size);
+}
+
+.button {
+  padding: var(--spacing);
+}
+```
+---
+
+## CSS Variables + Media Queries Together
+This is the powerful combination for responsive design! You can overwrite variables inside media queries to change values based on screen  size.
+
+---
+```text
+            CSS Variables + Media Queries
+                          │
+        ┌─────────────────┴─────────────────┐
+        │                                   │
+        ▼                                   ▼
+   Store Values                     Change Values
+     Once                           Per Screen Size
+        │                                   │
+        └──────────────► Responsive UI ◄────┘
+```
+---
+```css
+/* Default (mobile) */
+:root {
+  --font-size: 14px;
+  --padding: 20px;
+}
+
+/* Tablet and larger */
+@media screen and (min-width: 768px) {
+  :root {
+    --font-size: 16px;
+    --padding: 30px;
+  }
+}
+
+/* Desktop and larger */
+@media screen and (min-width: 1024px) {
+  :root {
+    --font-size: 18px;
+    --padding: 40px;
+  }
+}
+
+/* Using the variables */
+.container {
+  padding: var(--padding);
+  font-size: var(--font-size);
+}
+```
+Complete Example: Responsive Design with Variables:
+```html
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+/* Define CSS Variables */
+:root {
+  --font-size: 14px;
+  --spacing: 15px;
+  --primary-color: blue;
+  --container-width: 100%;
+}
+
+/* Tablet styles */
+@media screen and (min-width: 768px) {
+  :root {
+    --font-size: 16px;
+    --spacing: 20px;
+    --container-width: 750px;
+  }
+}
+
+/* Desktop styles */
+@media screen and (min-width: 1024px) {
+  :root {
+    --font-size: 18px;
+    --spacing: 25px;
+    --container-width: 960px;
+  }
+}
+
+/* Apply variables */
+body {
+  font-size: var(--font-size);
+}
+
+.container {
+  width: var(--container-width);
+  margin: 0 auto;
+  padding: var(--spacing);
+}
+
+h1 {
+  color: var(--primary-color);
+}
+
+.button {
+  padding: var(--spacing);
+}
+
+/* Hide button on mobile */
+@media screen and (max-width: 767px) {
+  .button {
+    display: none;
+  }
+}
+</style>
+</head>
+<body>
+
+<div class="container">
+  <h1>Responsive Page</h1>
+  <button class="button">Click Me</button>
+</div>
+
+</body>
+</html>
+```
+---
+## Key Differences: Media Queries vs Variables
+| Feature           | Media Queries                                                | CSS Variables                                 |
+| ----------------- | ------------------------------------------------------------ | --------------------------------------------- |
+| Purpose           | Apply styles based on device/screen size                     | Store reusable values                         |
+| Syntax            | @media (condition) { ... }                                   | --name: value; and var(--name)                |
+| When used         | Conditional styling                                          | Reusability and theming                       |
+| Can work together | Yes — overwrite variables inside media queries               | Yes — used inside media queries  |
+
+---
+# conclusion:
+Responsive Web Design
+        │
+        ├── Flexible Layouts
+        ├── Flexible Images
+        ├── Media Queries
+        │     └─ Different styles for different screens
+        │
+        ├── CSS Variables
+        │     └─ Reusable values
+        │
+        └── Together
+              └─ Build responsive and maintainable websites
+```
