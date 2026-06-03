@@ -21,8 +21,6 @@ CSS solves the problem of separating **content (HTML)** from **design (styling)*
 
 ## Three Ways to Add CSS to an HTML Document 
 
-## Ways to Add CSS to HTML
-
 ```text
                            Ways
                              │
@@ -33,6 +31,8 @@ CSS solves the problem of separating **content (HTML)** from **design (styling)*
       │                      │                      │
  styles.css           <style> tag             style=""
 ```
+
+---
 
 | Method           | Description                                                                 | Example                                     |
 | ---------------- | --------------------------------------------------------------------------- | ------------------------------------------- |
@@ -147,6 +147,8 @@ CSS selectors are used to target HTML elements and apply styles to them. They he
 Element Class   ID   Group Universal   Descendant          Child
   p    .intro #header h1,h2,p    *       div p           div > p
   ```
+
+---
 
 | Selector Type           | Syntax       | Description                                   | Example                         |
 | ----------------------- | ------------ | --------------------------------------------- | ------------------------------- |
@@ -359,7 +361,7 @@ All elements will have zero margin and padding, and use `border-box` sizing.
 
 ---
 
-## Example: Class Reusability vs ID Uniqueness
+## Example:
 
 ### HTML
 
@@ -601,16 +603,16 @@ CSS colors help developers:
 ---
 ## Main Ways to Define Colors in CSS
 
-## CSS Colors Overview
-
 ```text
-                          CSS Colors
+                              Ways
                                 │
         ┌───────────────┬────────┬────────┬───────────────┐
         │               │        │        │               │
         ▼               ▼        ▼        ▼               ▼
    Named Colors     HEX Colors   RGB     RGBA           HSL/HSLA
 ```
+
+---
 
 | Method | Syntax Example | How It Works |
 |---------|---------------|-------------|
@@ -881,7 +883,7 @@ CSS units help developers:
 They fall into two categories:
 
 ```text
-                    CSS Units
+                     Categories
                          │
         ┌────────────────┴────────────────┐
         │                                 │
@@ -890,6 +892,8 @@ They fall into two categories:
       px                         %, em, rem,
                                  vh, vw
 ```
+
+---
 
 **Absolute Units:** The absolute length units are fixed and a length expressed in any of these will appear as exactly that size.
 
