@@ -1,4 +1,4 @@
-# CSS Theory
+# CSS Theoretical Question & Answers
 
 ## Q1. What is CSS and How Do You Add It to an HTML Page?
 
@@ -572,16 +572,16 @@ CSS colors help developers:
 * Enhance user experience
 
 ---
+## Main Ways to Define Colors in CSS
 
-Main Ways to Define Colors in CSS
-| Method       | Syntax Example                  | How It Works                                                                                      |
-| ------------ | ------------------------------- | -------------------------------------------------------------------------------------------------                                           |
-| Named colors | color: red;                       | Uses 147 predefined keywords like red, blue, green,                                    |
-| Hexadecimal  | color: #ff4444; or #f44;        | Hex values #RRGGBB (or 3-digit shorthand #RGB), where each pair is 00–FF for red/green/|
-| RGB          | color: rgb(255, 68, 68);        | Integer values 0–255 for red, green, blue intensities                                  |
-| RGBA         | color: rgba(255, 68, 68, 0.6);  | RGB plus alpha (0–1 or 0%–100%) for transparency                                       |
-| HSL          | color: hsl(0, 100%, 63%);       | Hue (0–360°), Saturation (%), Lightness (%) — more intuitive for adjusting colors      |
-| HSLA         | color: hsla(0, 100%, 63%, 0.6); | HSL plus alpha channel for transparency                                                |
+| Method | Syntax Example | How It Works |
+|---------|---------------|-------------|
+| **Named Colors** | `color: red;` | Uses predefined color names such as `red`, `blue`, `green`, and many others. |
+| **Hexadecimal (HEX)** | `color: #ff4444;` <br> `color: #f44;` | Uses hexadecimal values in the format `#RRGGBB` or the shorthand `#RGB`, where each pair controls the intensity of red, green, and blue. |
+| **RGB** | `color: rgb(255, 68, 68);` | Uses numeric values from `0–255` to define the intensity of red, green, and blue colors. |
+| **RGBA** | `color: rgba(255, 68, 68, 0.6);` | Similar to RGB, but includes an alpha value (`0–1`) to control transparency. |
+| **HSL** | `color: hsl(0, 100%, 63%);` | Uses Hue (`0–360°`), Saturation (`%`), and Lightness (`%`) to define colors in a more human-friendly way. |
+| **HSLA** | `color: hsla(0, 100%, 63%, 0.6);` | Similar to HSL, but includes an alpha value to add transparency. |                                          |
 
 ## Examples: 
 
@@ -817,3 +817,264 @@ p {
 ## Conclusion
 
 CSS colors allow developers to style text, backgrounds, borders, and other elements. Colors can be defined using color names, HEX values, RGB, RGBA, HSL, and HSLA formats. Choosing the right color format helps create attractive, readable, and professional web designs.
+
+ # Q5. What are CSS Units? Explain px, %, rem, em, vh, and vw.
+
+## What are CSS Units?
+
+CSS units are used to define the size of elements, text, spacing, margins, padding, widths, heights, and other measurements on a webpage.
+
+---
+
+## Why Are CSS Units Important?
+
+CSS units help developers:
+
+* Set element dimensions
+* Control font sizes
+* Create responsive layouts
+* Maintain consistency across devices
+* Improve user experience
+
+---
+
+## CSS Units Categories
+
+They fall into two categories:
+
+```text
+                    CSS Units
+                         │
+        ┌────────────────┴────────────────┐
+        │                                 │
+ Absolute Units                    Relative Units
+        │                                 │
+      px                         %, em, rem,
+                                 vh, vw
+```
+
+**Absolute Units:** The absolute length units are fixed and a length expressed in any of these will appear as exactly that size.
+
+**Relative Units:** Flexible units that adjust according to the parent element, root element, or viewport size, making them useful for responsive web design.
+
+## Here's a simple explanation of each unit:
+
+| Unit                 | What it means                | Simple explanation                                                                                                          |
+| -------------------- | ---------------------------- | --------------------------------------------------------------------------------------------------------------------------- |
+| **px (pixels)**        | Fixed size                   | 1 px = 1 tiny dot on your screen. 20px always means 20 dots, no matter what    |
+| **% (percent)**          | Relative to parent           | 50% means "half the size of the parent box." If parent is 200px wide, 50% = 100px |
+| **rem**                  | Relative to root font-size   | 1rem = the font size of the <html> tag (usually 16px). So 2rem = 32px. Same everywhere on the page  |
+| **em**                  | Relative to parent font-size | 1em = the font size of the parent element. If parent font is 18px, 2em = 36px. |
+| **vh (viewport height)** | Relative to screen height    | 1vh = 1% of your browser window height. 100vh = full screen height |
+| **vw (viewport width)**  | Relative to screen width     | 1vw = 1% of your browser window width. 50vw = half the screen width  |
+
+## When to use each:
+
+- **px:** Fixed-size elements such as borders, icons, and precise layouts.
+- **%:** Widths and margins that should scale with parent containers.
+- **rem:** Font sizes and spacing (recommended for consistency and accessibility).
+- **em:** Components that should scale based on the parent element.
+- **vh/vw:** Full-screen sections and responsive layouts tied to viewport size.
+
+## Examples: 
+
+### 1. px (Pixels)
+
+#### CSS
+
+```css
+h1 {
+    font-size: 32px;
+}
+```
+
+#### HTML
+
+```html
+<h1>Welcome</h1>
+```
+
+**Explanation:**
+The heading will always have a font size of 32 pixels regardless of its parent element.
+---
+
+### 2. % (Percentage)
+
+#### CSS
+
+```css
+.container {
+    width: 80%;
+}
+```
+
+#### HTML
+
+```html
+<div class="container">
+    Content
+</div>
+```
+
+**Explanation:**
+The container will occupy 80% of its parent element's width.
+
+---
+
+### 3. em
+
+#### CSS
+
+```css
+.parent {
+    font-size: 20px;
+}
+
+.child {
+    font-size: 2em;
+}
+```
+
+#### HTML
+
+```html
+<div class="parent">
+    <p class="child">Hello World</p>
+</div>
+```
+
+**Explanation:**
+The parent font size is 20px.
+
+```text
+2em = 2 × 20px = 40px
+```
+
+The child text will be 40px.
+---
+
+### 4. rem
+
+#### CSS
+
+```css
+html {
+    font-size: 16px;
+}
+
+h1 {
+    font-size: 2rem;
+}
+```
+
+#### HTML
+
+```html
+<h1>Welcome</h1>
+```
+
+**Explanation:**
+
+```text
+2rem = 2 × 16px = 32px
+```
+
+The heading size becomes 32px.
+---
+
+### 5. vh (Viewport Height)
+
+#### CSS
+
+```css
+.hero {
+    height: 100vh;
+}
+```
+
+#### HTML
+
+```html
+<div class="hero">
+    Full Screen Section
+</div>
+```
+
+**Explanation:**
+The element will occupy 100% of the browser's visible height.
+---
+
+### 6. vw (Viewport Width)
+
+#### CSS
+
+```css
+.banner {
+    width: 100vw;
+}
+```
+
+#### HTML
+
+```html
+<div class="banner">
+    Full Width Banner
+</div>
+```
+
+**Explanation:**
+The banner will occupy 100% of the browser's width.
+---
+
+# Complete Example
+
+### CSS
+
+```css
+html {
+    font-size: 16px;
+}
+
+.container {
+    width: 80%;
+    padding: 20px;
+}
+
+h1 {
+    font-size: 2rem;
+}
+
+p {
+    font-size: 1.2em;
+}
+
+.hero {
+    height: 100vh;
+    width: 100vw;
+    background-color: lightblue;
+}
+```
+
+### HTML
+
+```html
+<div class="hero">
+    <div class="container">
+        <h1>CSS Units Example</h1>
+        <p>This paragraph demonstrates different CSS units.</p>
+    </div>
+</div>
+```
+
+---
+
+# Conclusion
+CSS units determine the size and spacing of elements on a webpage.
+
+- **px** provides fixed sizing.
+- **%** creates flexible layouts based on parent elements.
+- **em** scales relative to the parent font size.
+- **rem** scales relative to the root font size.
+- **vh** and **vw** scale relative to the viewport size.
+
+Understanding these units helps developers create responsive and user-friendly web designs that work well on different screen sizes and devices.
