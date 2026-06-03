@@ -1418,7 +1418,7 @@ This includes:
 <head>
  <link rel="stylesheet" href="style.css">   <!-- External -->
  <style>
-   p { color: blue; }                       <!-- Internal -->
+   p { color: blue; }                       /* Internal */
  </style>
 </head>
 ```
@@ -1472,7 +1472,7 @@ When conflicting styles exist, the browser decides in this order:
    └─ Inherited properties from parent apply
 ```
 
-# Explain CSS Flexbox. How does it differ from Block Layout?
+# Q7 Explain CSS Flexbox. How does it differ from Block Layout?
 
 **Flexbox** (Flexible Box Layout) is a CSS layout model that makes it easier to arrange, align, and distribute elements inside a container. It is designed to create responsive layouts without using complex positioning techniques or floats.
 
