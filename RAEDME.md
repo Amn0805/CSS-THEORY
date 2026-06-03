@@ -135,65 +135,114 @@ CSS selectors are used to target HTML elements and apply styles to them. They he
 
 ## Complete Code Example Using All 7 Selectors
 
-### CSS
+### 1. Element Selector
+
+#### CSS
 
 ```css
-/* 1. Element Selector */
 p {
     color: blue;
     font-size: 16px;
 }
-HTML
+```
+
+#### HTML
+
+```html
 <p>This is the first paragraph.</p>
 <p>This is the second paragraph.</p>
+```
 
-output:
-All <p> elements will have blue text and a font size of 16px.
+**Result:**
+All `<p>` elements will have blue text and a font size of 16px.
 
-/* 2. Class Selector */
+---
+
+### 2. Class Selector
+
+#### CSS
+
+```css
 .intro {
     color: red;
     font-weight: bold;
 }
-HTML
+```
+
+#### HTML
+
+```html
 <p class="intro">Welcome to my website.</p>
 <h2 class="intro">About Us</h2>
+```
 
-output:
-Both elements with the class intro will appear in red and bold text.
+**Result:**
+Both elements with the class `intro` will appear in red and bold text.
 
-/* 3. ID Selector */
+---
+
+### 3. ID Selector
+
+#### CSS
+
+```css
 #header {
     background-color: gray;
-    color : White;
+    color: white;
     padding: 20px;
 }
-HTML
+```
+
+#### HTML
+
+```html
 <div id="header">
     <h1>My Website</h1>
 </div>
+```
 
-output:
+**Result:**
 The header section will have a gray background with white text.
 
-/* 4. Group Selector */
+---
+
+### 4. Group Selector
+
+#### CSS
+
+```css
 h1, h2, h3 {
     text-align: center;
     margin: 10px;
 }
-HTML
+```
+
+#### HTML
+
+```html
 <h1>Main Heading</h1>
 <h2>Sub Heading</h2>
 <h3>Small Heading</h3>
+```
 
-output:
+**Result:**
 All headings will be centered with a margin of 10px.
 
-/* 5. Descendant Selector  */
+---
+
+### 5. Descendant Selector
+
+#### CSS
+
+```css
 div p {
     color: green;
 }
-HTML
+```
+
+#### HTML
+
+```html
 <div>
     <section>
         <p>This paragraph is inside a div.</p>
@@ -201,16 +250,27 @@ HTML
 </div>
 
 <p>This paragraph is outside the div.</p>
+```
 
-output:
-Only the paragraph inside the div will become green.
+**Result:**
+Only the paragraph inside the `div` will become green.
 
-/* 6. Child Selector (Direct Child Only) */
+---
+
+### 6. Child Selector
+
+#### CSS
+
+```css
 div > p {
     color: orange;
     font-weight: bold;
 }
-HTML
+```
+
+#### HTML
+
+```html
 <div>
     <p>Direct child paragraph.</p>
 
@@ -218,24 +278,35 @@ HTML
         <p>Nested paragraph.</p>
     </section>
 </div>
+```
 
-output:
-Only the first paragraph will become orange and bold because it is a direct child of the div.
+**Result:**
+Only the first paragraph will become orange and bold because it is a direct child of the `div`.
 
-/* 7. Universal Selector */
+---
+
+### 7. Universal Selector
+
+#### CSS
+
+```css
 * {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
 }
-HTML
+```
+
+#### HTML
+
+```html
 <h1>Website Title</h1>
 <p>Some paragraph text.</p>
 <button>Click Me</button>
-
-output:
-All elements will have zero margin and padding, and use border-box sizing.
 ```
+
+**Result:**
+All elements will have zero margin and padding, and use `border-box` sizing.
 
 ---
 
