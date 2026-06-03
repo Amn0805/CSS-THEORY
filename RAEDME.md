@@ -1124,3 +1124,851 @@ CSS units determine the size and spacing of elements on a webpage.
 - **vh** and **vw** scale relative to the viewport size.
 
 Understanding these units helps developers create responsive and user-friendly web designs that work well on different screen sizes and devices.
+
+---
+
+# Q6. What is CSS Specificity and How Does the Cascade Work?
+
+When we write multiple CSS rules that target the same element, the browser needs to decide which style to apply.  
+CSS uses two important concepts to make this decision:
+
+```text
+                     Concepts
+                         │
+        ┌────────────────┴────────────────┐
+        │                                 │
+     Cascade                         Specificity
+```
+
+---
+
+**Cascade:** Determines which rule wins based on source and order.
+
+**Specificity:** Determines which selector is more important.
+
+---
+
+## What is the CSS Cascade?
+
+The Cascade is the algorithm CSS uses to figure out which style wins when multiple rules could apply to the same element. The name "Cascading Style Sheets" comes from this concept.
+
+### Important Factors:
+
+The Cascade considers 3 main factors (in order of priority):
+
+```text
+                          Factors
+                             │
+      ┌──────────────────────┼──────────────────────┐
+      │                      │                      │
+      ▼                      ▼                      ▼
+ Importance            Specificity           Source Order
+ & Origin 
+```
+
+---
+
+1. Origin & Importance (!important)  
+2. Specificity  
+3. Source order (the rule written last wins)
+
+---
+
+| Factor                 | What it means                                                                                        |
+| ---------------------- | ---------------------------------------------------------------------------------------------------- |
+| 1. Origin & Importance | Where the CSS comes from (browser default, user, or your stylesheet) and whether !important is used  |
+| 2. Specificity         | How "specific" or targeted the selector is (ID vs class vs element)                                  |
+| 3. Source Order        | If everything else is equal, the rule that appears last in the CSS file wins                         |
+
+---
+
+## 1. Origin & Importance :
+
+What is "Origin" in CSS?
+
+Origin = Where your CSS comes from (who wrote it).
+
+### Types:
+
+There are 3 types of origin:
+
+```text
+                          Types
+                             │
+      ┌──────────────────────┼──────────────────────┐
+      │                      │                      │
+      ▼                      ▼                      ▼
+ Browser default          Author                    User
+```
+
+---
+
+1. Browser default.  
+2. Author.  
+3. User.  
+
+---
+
+| Origin          | Who writes it       | Example                                     |
+| --------------- | ------------------- | ------------------------------------------- |
+| Browser default | The browser itself  | Every browser gives <p> some default margin |
+| Author (you)    | You (the developer) | Your CSS file: p { color: red; }            |
+| User            | The website visitor | User's custom browser settings              |
+
+---
+
+Priority:
+
+```text
+Your CSS (Author) → Wins over Browser defaults
+```
+
+---
+
+Example:
+
+```CSS
+/* Browser default (low priority) */
+p { margin: 1em; }
+
+/* Your CSS (higher priority) */
+p { margin: 0; }  /* This wins! */
+```
+
+Result: Paragraph has no margin because your CSS overrides the browser's default.
+
+---
+
+### What is Important?
+
+!important = A special flag you can add to make that style always win, no matter what.
+
+Without !important:
+
+```CSS
+p { color: red; }
+#header p { color: blue; }  /* This wins because it's more specific */
+```
+
+---
+
+With !important:
+
+```CSS
+p { color: red !important; }
+#header p { color: blue; }  /* This loses! */
+```
+
+---
+
+Result: Text is red because !important overrides normal specificity.
+
+---
+
+### Origin & Importance (Highest Priority)
+
+| Priority | Origin                                              |
+| -------- | --------------------------------------------------- |
+| 1️⃣      | User !important styles                              |
+| 2️⃣      | Author !important styles (your CSS with !important) |
+| 3️⃣      | Author normal styles (your regular CSS)             |
+| 4️⃣      | User normal styles                                  |
+| 5️⃣      | Browser default styles (lowest)                     |
+
+---
+
+### Why You Should Avoid !important
+
+| Problem          | Explanation                                             |
+| ---------------- | ------------------------------------------------------- |
+| Hard to debug    | You can't override it without another !important       |
+| Breaks CSS logic | Normal specificity rules don't work anymore            |
+| Makes code messy | Other developers can't predict what will happen        |
+
+---
+
+## 2. Specificity:
+
+Specificity is like a scoring system that browsers use to decide which style rule wins when multiple rules target the same element.  
+
+Impotance:  
+Each selector gets a score in the format: (a, b, c, d)
+
+| Value | What it counts                      | Example                       | Points       |
+| ----- | ----------------------------------- | ----------------------------- | ------------ |
+| a     | Inline styles                       | style="color: red"           | (1, 0, 0, 0) |
+| b     | ID selectors                        | #header                       | (0, 1, 0, 0) |
+| c     | Classes, attributes, pseudo-classes | .class, [type="text"], :hover | (0, 0, 1, 0) |
+| d     | Element tags, pseudo-elements       | div, p, ::before              | (0, 0, 0, 1) |
+
+Higher score from left to right wins.
+
+---
+
+Hierarchy of selector strength (lowest to highest):
+
+```text
+Element (div) < Class (.class) < ID (#id) < Inline style < !important
+```
+
+---
+
+### Examples:
+
+---
+
+### 1. Element vs Class:
+
+#### HTML
+
+```html
+<p class="text">Hello</p>
+```
+
+---
+
+#### CSS
+
+```CSS
+p {
+  color: blue;
+}
+
+.text {
+  color: green;
+}
+```
+
+---
+
+Result:  
+The text will be green.  
+Why?  
+A class selector has higher specificity than an element selector.
+
+---
+
+### 2. Class Vs ID :
+
+#### HTML
+
+```html
+<p id="message" class="text">
+  Hello
+</p>
+```
+
+---
+
+#### CSS
+
+```CSS
+.text {
+  color: green;
+}
+
+#message {
+  color: red;
+}
+```
+
+---
+
+Result:  
+The text will be red.  
+Why?  
+ID selectors have higher specificity than class selectors.
+
+---
+
+### 3. Inline CSS:
+
+#### HTML
+
+```html
+<p id="message" style="color: purple;">
+  Hello
+</p>
+```
+
+#### CSS
+
+```CSS
+#message {
+  color: red;
+}
+```
+
+---
+
+Result:  
+The text will be purple.  
+Why?  
+Inline CSS has higher priority than ID selectors.
+
+---
+
+## 3. Source Order(If Everything Else is Equal):
+
+If specificity is the same, the rule that appears last wins.  
+This includes:  
+      External CSS vs Internal CSS: Both have equal specificity. The one loaded last in the HTML file wins.
+
+```html
+<head>
+ <link rel="stylesheet" href="style.css">   <!-- External -->
+ <style>
+   p { color: blue; }                       <!-- Internal -->
+ </style>
+</head>
+```
+
+---
+
+```CSS
+/* style.css */
+p { color: red; }
+```
+
+Result: Text is blue because Internal CSS is loaded last.
+
+---
+
+Same CSS file: The rule written later overrides the earlier one.
+
+```CSS
+p { color: red; }    /* First — ignored */
+p { color: blue; }   /* Last — WINS */
+```
+
+---
+
+Inheritance (Third Factor):  
+Some properties (like font-family, color) automatically pass from parent to child. Others (like border, padding) do not inherit.
+
+---
+
+## Conclusion:
+
+When conflicting styles exist, the browser decides in this order:
+
+```Text
+1. Check Origin & Importance
+   ├─ !important styles win over normal styles
+   └─ Author styles win over user/browser defaults
+
+2. Check Specificity (if origin is same)
+   ├─ Inline style (1,0,0,0) wins
+   ├─ ID selector (0,1,0,0) wins
+   ├─ Class (0,0,1,0) wins
+   └─ Element (0,0,0,1) wins
+
+3. Check Source Order (if specificity is tied)
+   ├─ CSS loaded last in HTML wins
+   ├─ Internal vs External: same specificity, order matters
+   └─ Later rule in same file wins over earlier rule
+
+4. Check Inheritance (if no direct style)
+   └─ Inherited properties from parent apply
+```
+
+# Explain CSS Flexbox. How does it differ from Block Layout?
+
+**Flexbox** (Flexible Box Layout) is a CSS layout model that makes it easier to arrange, align, and distribute elements inside a container. It is designed to create responsive layouts without using complex positioning techniques or floats.
+
+Before Flexbox, developers mainly relied on the traditional **block layout**, which often required additional CSS rules to achieve complex layouts. Flexbox simplifies this process by providing powerful alignment and spacing features.
+
+---
+
+## What is Flexbox?
+
+CSS Flexbox (Flexible Box Layout) is a one-dimensional layout model that arranges items in a row or column, making it easy to create responsive and dynamic layouts without using floats or positioning.
+
+---
+
+## How Flexbox Works
+
+A flexbox layout always has two parts:
+
+```text
+                       Parts
+                         │
+        ┌────────────────┴────────────────┐
+        │                                 │
+ Flex-Container                       Flex-Items
+```
+
+---
+
+| Part | What it is | How to create it |
+|--------|------------|------------------|
+| Flex Container | The parent element | `display: flex;` on the parent |
+| Flex Items | Direct children of the container | Automatically become flex items |
+
+---
+
+## Basic Example
+
+### HTML
+
+```html
+<div class="container">
+  <div class="item">1</div>
+  <div class="item">2</div>
+  <div class="item">3</div>
+</div>
+```
+
+### CSS
+
+```css
+.container {
+  display: flex;  /* Turns container into flex container */
+}
+```
+
+Now all `.item` divs are flex items and will be arranged in a row by default.
+
+---
+
+# Key Concept: Main Axis and Cross Axis
+
+Understanding these two axes is the foundation of Flexbox — you cannot master Flexbox without them.
+
+## The Two Axis
+
+```text
+                       Axis
+                         │
+        ┌────────────────┴────────────────┐
+        │                                 │
+    Main-Axis                            Cross-Axis
+```
+
+---
+
+| Axis | What it does | Controlled by |
+|--------|-------------|---------------|
+| Main Axis | Where items are placed (direction of flow) | `flex-direction` |
+| Cross Axis | Perpendicular to main axis (alignment across) | Automatically perpendicular to main axis |
+
+---
+
+The axes change when you change `flex-direction`:
+
+```text
+When flex-direction: row (default):
+├─ Main axis: Horizontal (left → right)
+└─ Cross axis: Vertical (top → bottom)
+
+When flex-direction: column:
+├─ Main axis: Vertical (top → bottom)
+└─ Cross axis: Horizontal (left → right)
+```
+
+---
+
+# Key Flexbox Properties
+
+## Properties on the Container (Parent)
+
+```text
+                              Properties(Container)
+                                │
+        ┌───────────────┬───────────────┬───────────────┬───────────────┐
+        │               │               │               │               │
+        ▼               ▼               ▼               ▼               ▼
+   flex-direction  justify-content   align-items     flex-wrap         gap
+```
+
+---
+
+| Property | What it does | Common values |
+|-----------|-------------|--------------|
+| flex-direction | Sets the main axis direction | `row`, `row-reverse`, `column`, `column-reverse` |
+| justify-content | Aligns items along the main axis | `flex-start`, `center`, `space-between`, `space-around`, `flex-end` |
+| align-items | Aligns items across the cross axis | `stretch`, `center`, `flex-start`, `flex-end`, `baseline` |
+| flex-wrap | Whether items wrap to new lines | `nowrap`, `wrap`, `wrap-reverse` |
+| gap | Space between items | `10px`, `20px`, etc. |
+
+---
+
+# Code Examples
+
+## 1. flex-direction
+
+### HTML
+
+```html
+<div class="container">
+  <div class="item">1</div>
+  <div class="item">2</div>
+  <div class="item">3</div>
+</div>
+```
+
+### CSS
+
+```css
+.container {
+  display: flex;
+  flex-direction: column;
+}
+```
+
+### Output
+
+```text
+1
+2
+3
+```
+
+---
+
+## 2. justify-content
+
+### HTML
+
+```html
+<div class="container">
+  <div class="item">1</div>
+  <div class="item">2</div>
+  <div class="item">3</div>
+</div>
+```
+
+### CSS
+
+```css
+.container {
+  display: flex;
+  justify-content: space-between;
+}
+```
+
+### Output
+
+```text
+[1]           [2]           [3]
+```
+
+---
+
+## 3. align-items
+
+### HTML
+
+```html
+<div class="container">
+  <div class="item">1</div>
+  <div class="item">2</div>
+  <div class="item">3</div>
+</div>
+```
+
+### CSS
+
+```css
+.container {
+  display: flex;
+  align-items: center;
+}
+```
+
+---
+
+## 4. flex-wrap
+
+### HTML
+
+```html
+<div class="container">
+  <div class="item">1</div>
+  <div class="item">2</div>
+  <div class="item">3</div>
+  <div class="item">4</div>
+  <div class="item">5</div>
+  <div class="item">6</div>
+</div>
+```
+
+### CSS
+
+```css
+.container {
+  display: flex;
+  flex-wrap: wrap;
+}
+```
+
+### Output
+
+```text
+[1][2][3]
+[4][5][6]
+```
+
+---
+
+## 5. gap
+
+### HTML
+
+```html
+<div class="container">
+  <div class="item">1</div>
+  <div class="item">2</div>
+  <div class="item">3</div>
+</div>
+```
+
+### CSS
+
+```css
+.container {
+  display: flex;
+  gap: 20px;
+}
+```
+
+---
+
+# Properties on the Items (Children)
+
+```text
+                    Properties(Children)
+                             │
+      ┌──────────────────────┼──────────────────────┐
+      │                      │                      │
+      ▼                      ▼                      ▼
+    flex                   order                align-self
+```
+
+---
+
+| Property | What it does |
+|-----------|-------------|
+| flex | Shorthand for `flex-grow`, `flex-shrink`, `flex-basis` |
+| order | Reorders items without changing HTML |
+| align-self | Overrides container's `align-items` for one item |
+
+---
+
+# Code Examples
+
+## 1. flex
+
+### HTML
+
+```html
+<div class="container">
+  <div class="item1">1</div>
+  <div class="item2">2</div>
+</div>
+```
+
+### CSS
+
+```css
+.container {
+  display: flex;
+}
+
+.item1 {
+  flex-grow: 2;
+}
+
+.item2 {
+  flex-grow: 1;
+}
+```
+
+### Output
+
+The first box gets twice as much available space as the second.
+
+---
+
+## 2. order
+
+### HTML
+
+```html
+<div class="container">
+  <div class="box box1">Box 1</div>
+  <div class="box box2">Box 2</div>
+  <div class="box box3">Box 3</div>
+</div>
+```
+
+### CSS
+
+```css
+.container {
+  display: flex;
+  gap: 10px;
+}
+
+.box {
+  padding: 20px;
+  border: 1px solid black;
+}
+
+.box1 {
+  order: 2;
+}
+
+.box2 {
+  order: 1;
+}
+
+.box3 {
+  order: 3;
+}
+```
+
+### Output
+
+```text
+Box 2   Box 1   Box 3
+```
+
+---
+
+## 3. align-self
+
+### HTML
+
+```html
+<div class="container">
+  <div class="box">Box 1</div>
+  <div class="box special">Box 2</div>
+  <div class="box">Box 3</div>
+</div>
+```
+
+### CSS
+
+```css
+.container {
+  display: flex;
+  height: 200px;
+  border: 2px solid black;
+  align-items: flex-start;
+}
+
+.box {
+  padding: 20px;
+  border: 1px solid blue;
+}
+
+.special {
+  align-self: flex-end;
+}
+```
+
+### Output
+
+```text
+Box 1    Box 3
+            Box 2
+```
+
+---
+
+# Flexbox vs Block Layout — Key Differences
+
+| Feature | Block Layout | Flexbox |
+|----------|-------------|----------|
+| Direction | Stacks vertically (top to bottom) | Row or column (flexible) |
+| Starts on new line | Yes — always creates line break | No — items sit side by side |
+| Width | Takes full width of parent | Takes only needed width (unless set) |
+| Height/Width | Respected | Respected |
+| Alignment | Limited (text-align for horizontal only) | Full control via main & cross axis |
+| Spacing | Margins only | gap property + flexible spacing |
+| Responsive | Limited capabilities | Extensive — adapts smoothly to screen sizes |
+| Reordering | Must change HTML | Use order property |
+| Space distribution | Manual with margins | Automatic with flex-grow, flex-shrink |
+
+---
+
+# Visual Differences
+
+## Block Layout (Default)
+
+### HTML
+
+```html
+<div>Item 1</div>
+<div>Item 2</div>
+<div>Item 3</div>
+```
+
+Result: Each item takes full width and stacks vertically.
+
+```text
+┌─────────────────┐
+│    Item 1       │
+└─────────────────┘
+┌─────────────────┐
+│    Item 2       │
+└─────────────────┘
+┌─────────────────┐
+│    Item 3       │
+└─────────────────┘
+```
+
+---
+
+## Flexbox Layout
+
+### HTML
+
+```html
+<div class="container">
+  <div>Item 1</div>
+  <div>Item 2</div>
+  <div>Item 3</div>
+</div>
+```
+
+### CSS
+
+```css
+.container {
+  display: flex;
+}
+```
+
+Result: Items sit side by side in a row.
+
+```text
+┌───────────────────────────────────────┐
+│ Item 1  │  Item 2  │  Item 3          │
+└───────────────────────────────────────┘
+```
+
+---
+
+# Benefits of Flexbox
+
+| Benefit | Explanation |
+|----------|------------|
+| Responsive Design | Creates layouts that adapt to any screen size |
+| Easy Alignment | Effortless horizontal and vertical alignment via axes |
+| Dynamic Sizing | Items automatically adjust size based on available space |
+| Reordering | Change visual order without changing HTML structure |
+| No Floats/Positioning | Modern approach without old hacks |
+| Space Distribution | Automatically distributes space between items |
+
+---
+
+# Conclusion
+
+| Aspect | Block Layout | Flexbox |
+|---------|-------------|----------|
+| Purpose | Document flow (vertical stacking) | Layout control (row/column) |
+| Dimension | Two-dimensional (natural flow) | One-dimensional (row or column) |
+| Best for | Text content, paragraphs | Components, navigation, cards, responsive layouts |
+| Alignment | Limited | Full control via main & cross axis |
