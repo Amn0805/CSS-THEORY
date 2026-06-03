@@ -938,6 +938,7 @@ h1 {
 
 **Explanation:**
 The heading will always have a font size of 32 pixels regardless of its parent element.
+
 ---
 
 ### 2. % (Percentage)
@@ -1217,7 +1218,7 @@ There are 3 types of origin:
 
 ---
 
-Priority:
+### **Priority**:
 
 ```text
 Your CSS (Author) → Wins over Browser defaults
@@ -1225,7 +1226,7 @@ Your CSS (Author) → Wins over Browser defaults
 
 ---
 
-Example:
+#### Example:
 
 ```CSS
 /* Browser default (low priority) */
@@ -1235,7 +1236,7 @@ p { margin: 1em; }
 p { margin: 0; }  /* This wins! */
 ```
 
-Result: Paragraph has no margin because your CSS overrides the browser's default.
+**Result**: Paragraph has no margin because your CSS overrides the browser's default.
 
 ---
 
@@ -1261,7 +1262,7 @@ p { color: red !important; }
 
 ---
 
-Result: Text is red because !important overrides normal specificity.
+**Result**: Text is red because !important overrides normal specificity.
 
 ---
 
@@ -1291,7 +1292,7 @@ Result: Text is red because !important overrides normal specificity.
 
 Specificity is like a scoring system that browsers use to decide which style rule wins when multiple rules target the same element.  
 
-Impotance:  
+### Impotance:  
 Each selector gets a score in the format: (a, b, c, d)
 
 | Value | What it counts                      | Example                       | Points       |
@@ -1305,7 +1306,7 @@ Higher score from left to right wins.
 
 ---
 
-Hierarchy of selector strength (lowest to highest):
+### Hierarchy of selector strength (lowest to highest):
 
 ```text
 Element (div) < Class (.class) < ID (#id) < Inline style < !important
@@ -1341,9 +1342,9 @@ p {
 
 ---
 
-Result:  
+**Result**:  
 The text will be green.  
-Why?  
+**Why**?  
 A class selector has higher specificity than an element selector.
 
 ---
@@ -1374,9 +1375,9 @@ A class selector has higher specificity than an element selector.
 
 ---
 
-Result:  
+**Result**:  
 The text will be red.  
-Why?  
+**Why**?  
 ID selectors have higher specificity than class selectors.
 
 ---
@@ -1401,9 +1402,9 @@ ID selectors have higher specificity than class selectors.
 
 ---
 
-Result:  
+**Result**:  
 The text will be purple.  
-Why?  
+**Why**?  
 Inline CSS has higher priority than ID selectors.
 
 ---
@@ -1430,7 +1431,7 @@ This includes:
 p { color: red; }
 ```
 
-Result: Text is blue because Internal CSS is loaded last.
+**Result**: Text is blue because Internal CSS is loaded last.
 
 ---
 
@@ -1443,7 +1444,7 @@ p { color: blue; }   /* Last — WINS */
 
 ---
 
-Inheritance (Third Factor):  
+## Inheritance (Third Factor):  
 Some properties (like font-family, color) automatically pass from parent to child. Others (like border, padding) do not inherit.
 
 ---
@@ -1531,11 +1532,11 @@ Now all `.item` divs are flex items and will be arranged in a row by default.
 
 ---
 
-# Key Concept: Main Axis and Cross Axis
+## Key Concept: Main Axis and Cross Axis
 
 Understanding these two axes is the foundation of Flexbox — you cannot master Flexbox without them.
 
-## The Two Axis
+### The Two Axis
 
 ```text
                        Axis
@@ -1568,7 +1569,7 @@ When flex-direction: column:
 
 ---
 
-# Key Flexbox Properties
+## Key Flexbox Properties
 
 ## Properties on the Container (Parent)
 
@@ -1593,11 +1594,11 @@ When flex-direction: column:
 
 ---
 
-# Code Examples
+## Code Examples
 
-## 1. flex-direction
+### 1. flex-direction
 
-### HTML
+#### HTML
 
 ```html
 <div class="container">
@@ -1607,7 +1608,7 @@ When flex-direction: column:
 </div>
 ```
 
-### CSS
+#### CSS
 
 ```css
 .container {
@@ -1616,7 +1617,7 @@ When flex-direction: column:
 }
 ```
 
-### Output
+#### Output
 
 ```text
 1
@@ -1626,9 +1627,9 @@ When flex-direction: column:
 
 ---
 
-## 2. justify-content
+### 2. justify-content
 
-### HTML
+#### HTML
 
 ```html
 <div class="container">
@@ -1638,7 +1639,7 @@ When flex-direction: column:
 </div>
 ```
 
-### CSS
+#### CSS
 
 ```css
 .container {
@@ -1647,7 +1648,7 @@ When flex-direction: column:
 }
 ```
 
-### Output
+#### Output
 
 ```text
 [1]           [2]           [3]
@@ -1655,9 +1656,9 @@ When flex-direction: column:
 
 ---
 
-## 3. align-items
+### 3. align-items
 
-### HTML
+#### HTML
 
 ```html
 <div class="container">
@@ -1667,7 +1668,7 @@ When flex-direction: column:
 </div>
 ```
 
-### CSS
+#### CSS
 
 ```css
 .container {
@@ -1678,9 +1679,9 @@ When flex-direction: column:
 
 ---
 
-## 4. flex-wrap
+### 4. flex-wrap
 
-### HTML
+#### HTML
 
 ```html
 <div class="container">
@@ -1693,7 +1694,7 @@ When flex-direction: column:
 </div>
 ```
 
-### CSS
+#### CSS
 
 ```css
 .container {
@@ -1702,7 +1703,7 @@ When flex-direction: column:
 }
 ```
 
-### Output
+#### Output
 
 ```text
 [1][2][3]
@@ -1711,9 +1712,9 @@ When flex-direction: column:
 
 ---
 
-## 5. gap
+### 5. gap
 
-### HTML
+#### HTML
 
 ```html
 <div class="container">
@@ -1723,7 +1724,7 @@ When flex-direction: column:
 </div>
 ```
 
-### CSS
+#### CSS
 
 ```css
 .container {
@@ -1734,7 +1735,7 @@ When flex-direction: column:
 
 ---
 
-# Properties on the Items (Children)
+## Properties on the Items (Children)
 
 ```text
                     Properties(Children)
@@ -1755,11 +1756,11 @@ When flex-direction: column:
 
 ---
 
-# Code Examples
+## Code Examples
 
-## 1. flex
+### 1. flex
 
-### HTML
+#### HTML
 
 ```html
 <div class="container">
@@ -1768,7 +1769,7 @@ When flex-direction: column:
 </div>
 ```
 
-### CSS
+#### CSS
 
 ```css
 .container {
@@ -1784,15 +1785,15 @@ When flex-direction: column:
 }
 ```
 
-### Output
+#### Output
 
 The first box gets twice as much available space as the second.
 
 ---
 
-## 2. order
+### 2. order
 
-### HTML
+#### HTML
 
 ```html
 <div class="container">
@@ -1802,7 +1803,7 @@ The first box gets twice as much available space as the second.
 </div>
 ```
 
-### CSS
+#### CSS
 
 ```css
 .container {
@@ -1828,7 +1829,7 @@ The first box gets twice as much available space as the second.
 }
 ```
 
-### Output
+#### Output
 
 ```text
 Box 2   Box 1   Box 3
@@ -1836,9 +1837,9 @@ Box 2   Box 1   Box 3
 
 ---
 
-## 3. align-self
+### 3. align-self
 
-### HTML
+#### HTML
 
 ```html
 <div class="container">
@@ -1848,7 +1849,7 @@ Box 2   Box 1   Box 3
 </div>
 ```
 
-### CSS
+#### CSS
 
 ```css
 .container {
@@ -1868,7 +1869,7 @@ Box 2   Box 1   Box 3
 }
 ```
 
-### Output
+#### Output
 
 ```text
 Box 1    Box 3
@@ -1877,7 +1878,7 @@ Box 1    Box 3
 
 ---
 
-# Flexbox vs Block Layout — Key Differences
+## Flexbox vs Block Layout — Key Differences
 
 | Feature | Block Layout | Flexbox |
 |----------|-------------|----------|
@@ -1893,11 +1894,11 @@ Box 1    Box 3
 
 ---
 
-# Visual Differences
+## Visual Differences
 
-## Block Layout (Default)
+### Block Layout (Default)
 
-### HTML
+#### HTML
 
 ```html
 <div>Item 1</div>
@@ -1905,7 +1906,7 @@ Box 1    Box 3
 <div>Item 3</div>
 ```
 
-Result: Each item takes full width and stacks vertically.
+**Result**: Each item takes full width and stacks vertically.
 
 ```text
 ┌─────────────────┐
@@ -1921,9 +1922,9 @@ Result: Each item takes full width and stacks vertically.
 
 ---
 
-## Flexbox Layout
+### Flexbox Layout
 
-### HTML
+#### HTML
 
 ```html
 <div class="container">
@@ -1933,7 +1934,7 @@ Result: Each item takes full width and stacks vertically.
 </div>
 ```
 
-### CSS
+#### CSS
 
 ```css
 .container {
@@ -1941,7 +1942,7 @@ Result: Each item takes full width and stacks vertically.
 }
 ```
 
-Result: Items sit side by side in a row.
+**Result**: Items sit side by side in a row.
 
 ```text
 ┌───────────────────────────────────────┐
@@ -1951,7 +1952,7 @@ Result: Items sit side by side in a row.
 
 ---
 
-# Benefits of Flexbox
+### Benefits of Flexbox
 
 | Benefit | Explanation |
 |----------|------------|
@@ -1990,11 +1991,11 @@ Pseudo-classes and pseudo-elements are **special selectors** in CSS that let you
 
 ---
 
-# What is a Pseudo-class?
+## What is a Pseudo-class?
 
 A pseudo-class is a keyword that selects an element based on its special state or user interaction.
 
-## Key Points
+### Key Points
 
 | Aspect | Explanation |
 |----------|------------|
@@ -2004,7 +2005,7 @@ A pseudo-class is a keyword that selects an element based on its special state o
 
 ---
 
-## Common Pseudo-classes
+### Common Pseudo-classes
 
 | Pseudo-class | What it does | Example |
 |-------------|-------------|---------|
@@ -2019,9 +2020,9 @@ A pseudo-class is a keyword that selects an element based on its special state o
 
 ---
 
-## Example
+### Example
 
-### HTML
+#### HTML
 
 ```html
 <div>
@@ -2034,7 +2035,7 @@ A pseudo-class is a keyword that selects an element based on its special state o
 <input type="text" placeholder="Click here to focus">
 ```
 
-### CSS
+#### CSS
 
 ```css
 /* Change color when hovering */
@@ -2056,13 +2057,13 @@ input:focus {
 
 ---
 
-# What is a Pseudo-element?
+## What is a Pseudo-element?
 
 A pseudo-element is a keyword that styles a specific part of an element.
 
 ---
 
-## Key Points
+### Key Points
 
 | Aspect | Explanation |
 |----------|------------|
@@ -2072,7 +2073,7 @@ A pseudo-element is a keyword that styles a specific part of an element.
 
 ---
 
-## Common Pseudo-elements
+### Common Pseudo-elements
 
 | Pseudo-element | What it does | Example |
 |---------------|-------------|---------|
@@ -2085,9 +2086,9 @@ A pseudo-element is a keyword that styles a specific part of an element.
 
 ---
 
-## Example
+### Example
 
-### HTML
+#### HTML
 
 ```html
 <h1>Welcome to CSS</h1>
@@ -2101,7 +2102,7 @@ A pseudo-element is a keyword that styles a specific part of an element.
 </blockquote>
 ```
 
-### CSS
+#### CSS
 
 ```css
 /* Add icon before headings */
@@ -2129,7 +2130,7 @@ p::selection {
 
 ---
 
-# Key Differences
+## Key Differences
 
 | Feature | Pseudo-class | Pseudo-element |
 |-----------|------------|---------------|
@@ -2215,7 +2216,7 @@ transition-property  transition-duration   transition-timing-function   transiti
 
 ---
 
-## Example: Hover Effect
+### Example: Hover Effect
 
 ```css
 div {
@@ -2230,19 +2231,19 @@ div:hover {
 }
 ```
 
-### Result
+ **Result**
 
 When you hover over the div, it smoothly grows from 100px to 300px over 2 seconds. When you move the mouse away, it smoothly shrinks back.
 
 ---
 
-# What is CSS Animation?
+## What is CSS Animation?
 
 CSS Animation allows you to animate HTML elements with full control over the animation process. Unlike transitions, animations can have multiple keyframes and run automatically without user interaction.
 
 ---
 
-## Key Points
+### Key Points
 
 | Aspect | Explanation |
 |----------|------------|
@@ -2290,7 +2291,7 @@ animation: name duration timing-function delay iteration-count direction fill-mo
 
 ---
 
-## Example
+### Example
 
 ```css
 /* Define the keyframes */
@@ -2307,14 +2308,14 @@ div {
   animation: changeColor 3s infinite;  /* Runs forever */
 }
 ```
-
-### Result
+---
+ **Result**
 
 The div changes color from red → blue → green automatically, repeating forever.
 
 ---
 
-# Key Differences: Transitions vs Animations
+## Key Differences: Transitions vs Animations
 
 | Feature | Transition | Animation |
 |----------|------------|-----------|
@@ -2328,7 +2329,7 @@ The div changes color from red → blue → green automatically, repeating forev
 
 ---
 
-## Diagram Explanation
+### Diagram Explanation
 
 ```text
 Transition:  A ────────→ B
@@ -2340,9 +2341,9 @@ Animation:   A ──→ B ──→ C ──→ D ──→ A (loops)
 
 ---
 
-# When to Use Each
+### When to Use Each
 
-## Use Transitions When:
+#### Use Transitions When:
 
 | Scenario | Example |
 |------------|----------|
@@ -2354,7 +2355,7 @@ Animation:   A ──→ B ──→ C ──→ D ──→ A (loops)
 
 ---
 
-## Use Animations When:
+#### Use Animations When:
 
 | Scenario | Example |
 |------------|----------|
@@ -2367,9 +2368,9 @@ Animation:   A ──→ B ──→ C ──→ D ──→ A (loops)
 
 ---
 
-# Complete Examples
+### Complete Examples
 
-## Transition Example (Hover Effect)
+#### Transition Example (Hover Effect)
 
 ```html
 <!DOCTYPE html>
@@ -2398,14 +2399,14 @@ Animation:   A ──→ B ──→ C ──→ D ──→ A (loops)
 </body>
 </html>
 ```
-
-### Result
+---
+ **Result**
 
 Button smoothly changes color and grows when hovered.
 
 ---
 
-## Animation Example (Loading Spinner)
+#### Animation Example (Loading Spinner)
 
 ```html
 <!DOCTYPE html>
@@ -2434,14 +2435,14 @@ Button smoothly changes color and grows when hovered.
 </body>
 </html>
 ```
-
-### Result
+---
+ **Result**
 
 Spinner rotates continuously forever.
 
 ---
 
-# Timing Functions (Speed Curve)
+### Timing Functions (Speed Curve)
 
 Both transitions and animations use timing functions to control acceleration:
 
@@ -2509,7 +2510,7 @@ Media Queries are a way to target specific devices and screen sizes so you can a
 
 ---
 
-## What Media Queries Do:
+### What Media Queries Do:
 
 By using media queries, you can:
 * Display a button on desktop and hide it on mobile
@@ -2591,7 +2592,7 @@ body {
 CSS Variables (also called Custom Properties) are containers that hold values that can be changed and reused throughout your CSS.
 
 ---
-## Why Use CSS Variables?
+### Why Use CSS Variables?
 
 | Benefit         | Explanation                                        |
 | --------------- | -------------------------------------------------- |
@@ -2683,7 +2684,9 @@ This is the powerful combination for responsive design! You can overwrite variab
   font-size: var(--font-size);
 }
 ```
-Complete Example: Responsive Design with Variables:
+---
+
+### Complete Example: Responsive Design with Variables:
 ```html
 <!DOCTYPE html>
 <html>
@@ -2763,6 +2766,7 @@ h1 {
 
 ---
 # conclusion:
+```text
 Responsive Web Design
         │
         ├── Flexible Layouts
